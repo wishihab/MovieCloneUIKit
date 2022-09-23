@@ -8,15 +8,31 @@
 import UIKit
 
 class BerandaViewController: UIViewController {
-
+    
+    private let berandaFeedTable: UITableView = {
+        
+        let table = UITableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return table
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         view.backgroundColor = .systemBackground
+        view.addSubview(berandaFeedTable)
+        
+        berandaFeedTable.delegate = self
+        berandaFeedTable.dataSource = self
+        
     }
     
-
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        berandaFeedTable.frame = view.bounds
+    }
     /*
     // MARK: - Navigation
 
@@ -27,4 +43,26 @@ class BerandaViewController: UIViewController {
     }
     */
 
+}
+
+
+extension BerandaViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = "Top Gun"
+        cell.backgroundColor = .systemBlue
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
 }
