@@ -18,6 +18,7 @@
 		084FCE9028DD544A00B1ED37 /* BerandaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084FCE8F28DD544900B1ED37 /* BerandaViewController.swift */; };
 		084FCE9228DD548000B1ED37 /* BioskopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084FCE9128DD548000B1ED37 /* BioskopViewController.swift */; };
 		084FCE9428DD549600B1ED37 /* TiketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084FCE9328DD549600B1ED37 /* TiketViewController.swift */; };
+		08A8488728DDE4AD000765DA /* MovieCollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A8488628DDE4AD000765DA /* MovieCollectionViewTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		084FCE8F28DD544900B1ED37 /* BerandaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerandaViewController.swift; sourceTree = "<group>"; };
 		084FCE9128DD548000B1ED37 /* BioskopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioskopViewController.swift; sourceTree = "<group>"; };
 		084FCE9328DD549600B1ED37 /* TiketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiketViewController.swift; sourceTree = "<group>"; };
+		08A8488628DDE4AD000765DA /* MovieCollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +105,12 @@
 		0833E25C28DD4D5E00E8DFDC /* Movie Clone */ = {
 			isa = PBXGroup;
 			children = (
-				084FCE8E28DD53A800B1ED37 /* ViewController */,
+				08A8488528DDE450000765DA /* Managers */,
+				08A8488428DDE424000765DA /* Resources */,
+				08A8488128DDE414000765DA /* Models */,
+				08A8488228DDE419000765DA /* Views */,
+				08A8488328DDE41D000765DA /* ViewModels */,
+				084FCE8E28DD53A800B1ED37 /* ViewControllers */,
 				0833E25D28DD4D5E00E8DFDC /* AppDelegate.swift */,
 				0833E25F28DD4D5E00E8DFDC /* SceneDelegate.swift */,
 				0833E26128DD4D5E00E8DFDC /* MainViewController.swift */,
@@ -131,14 +138,50 @@
 			path = "Movie CloneUITests";
 			sourceTree = "<group>";
 		};
-		084FCE8E28DD53A800B1ED37 /* ViewController */ = {
+		084FCE8E28DD53A800B1ED37 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				084FCE8F28DD544900B1ED37 /* BerandaViewController.swift */,
 				084FCE9128DD548000B1ED37 /* BioskopViewController.swift */,
 				084FCE9328DD549600B1ED37 /* TiketViewController.swift */,
 			);
-			path = ViewController;
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		08A8488128DDE414000765DA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		08A8488228DDE419000765DA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				08A8488628DDE4AD000765DA /* MovieCollectionViewTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		08A8488328DDE41D000765DA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		08A8488428DDE424000765DA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		08A8488528DDE450000765DA /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +318,7 @@
 				0833E26228DD4D5E00E8DFDC /* MainViewController.swift in Sources */,
 				084FCE9228DD548000B1ED37 /* BioskopViewController.swift in Sources */,
 				0833E25E28DD4D5E00E8DFDC /* AppDelegate.swift in Sources */,
+				08A8488728DDE4AD000765DA /* MovieCollectionViewTableViewCell.swift in Sources */,
 				084FCE9028DD544A00B1ED37 /* BerandaViewController.swift in Sources */,
 				0833E26028DD4D5E00E8DFDC /* SceneDelegate.swift in Sources */,
 			);

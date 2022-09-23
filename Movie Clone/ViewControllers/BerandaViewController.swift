@@ -11,8 +11,8 @@ class BerandaViewController: UIViewController {
     
     private let berandaFeedTable: UITableView = {
         
-        let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let table = UITableView(frame: .zero, style: .grouped)
+        table.register(MovieCollectionViewTableViewCell.self, forCellReuseIdentifier: MovieCollectionViewTableViewCell.identifier)
         return table
     }()
     
@@ -27,6 +27,7 @@ class BerandaViewController: UIViewController {
         berandaFeedTable.delegate = self
         berandaFeedTable.dataSource = self
         
+        berandaFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
     }
     
     override func viewDidLayoutSubviews() {
@@ -47,14 +48,22 @@ class BerandaViewController: UIViewController {
 
 
 extension BerandaViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Top Gun"
-        cell.backgroundColor = .systemBlue
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieCollectionViewTableViewCell.identifier, for: indexPath) as? MovieCollectionViewTableViewCell else{
+            return UITableViewCell()
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
