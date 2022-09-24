@@ -9,6 +9,9 @@ import UIKit
 
 class BerandaViewController: UIViewController {
     
+    //create array string for title
+    let sectionTitle: [String] = ["Movies", "TV", "Images"]
+    
     private let berandaFeedTable: UITableView = {
         
         let table = UITableView(frame: .zero, style: .grouped)
@@ -33,6 +36,9 @@ class BerandaViewController: UIViewController {
         //berandaFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
         let headerView = HeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         berandaFeedTable.tableHeaderView = headerView
+        
+        //call function in controller and api caller
+        fetchData()
     }
     
     private func configureNavBar(){
@@ -62,6 +68,38 @@ class BerandaViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    private func fetchData(){
+        //Call movieCredits
+        APICaller.shared.getMovieCredits{ results in
+            switch results {
+            case .success(let casts):
+                print(casts)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        //Call tvCredits
+//        APICaller.shared.getTvCredits{ results in
+//            switch results {
+//            case .success(let casts):
+//                print(casts)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+        
+        //Call ProfileImages
+//        APICaller.shared.getProfileImages{ results in
+//            switch results {
+//            case .success(let casts):
+//                print(casts)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+    }
 
 }
 
@@ -85,7 +123,8 @@ extension BerandaViewController: UITableViewDelegate, UITableViewDataSource {
     
     //set number of section
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        //return 3 changed to array of sectiontitle
+        return sectionTitle.count
     }
     
     //set height of table for row
@@ -98,6 +137,21 @@ extension BerandaViewController: UITableViewDelegate, UITableViewDataSource {
         return 40
     }
     
+    //add title for every section
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitle[section]
+    }
+    
+    //init header titlelabel font and frame
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else {return}
+        header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+        header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
+        header.textLabel?.textColor = .white
+        //header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
+        header.textLabel?.text = header.textLabel?.text?.uppercased()
+    }
+    
     //set scrolling behavior of navigationbar / item
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let defaultOffset = view.safeAreaInsets.top
@@ -105,4 +159,6 @@ extension BerandaViewController: UITableViewDelegate, UITableViewDataSource {
         
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
     }
+    
+    
 }
