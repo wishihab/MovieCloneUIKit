@@ -14,6 +14,7 @@ class MovieCollectionViewTableViewCell: UITableViewCell {
     private let movieCollectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
+        //set size of box
         layout.itemSize = CGSize(width: 150, height: 200)
         layout.scrollDirection = .horizontal
         let movieCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)

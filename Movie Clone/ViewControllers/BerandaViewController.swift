@@ -27,7 +27,10 @@ class BerandaViewController: UIViewController {
         berandaFeedTable.delegate = self
         berandaFeedTable.dataSource = self
         
-        berandaFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
+        //set header size
+        //berandaFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
+        let headerView = HeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        berandaFeedTable.tableHeaderView = headerView
     }
     
     override func viewDidLayoutSubviews() {
@@ -59,18 +62,22 @@ extension BerandaViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    //set tableview row in section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    //set number of section
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
+    //set height of table for row
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
     
+    //??
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
