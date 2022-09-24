@@ -7,25 +7,22 @@
 
 import Foundation
 
-struct MovieCreditsResponse: Codable{
-    let cast: [Cast]
+struct CastTitleResponse: Codable{
+    let cast: [Title]
     let crew: [Crew]
 }
 
-struct Cast: Codable{
+struct Title: Codable{
     let id: Int
     let original_title: String?
     let overview: String?
     let poster_path: String?
-    let release_date: String?
-    let character: String?
 }
 
 struct Crew: Codable{
     let id: Int
     let original_title: String?
     let overview: String?
-    let poster_path: String?
-    let release_date: String?
+    let poster_path: String
 }
 

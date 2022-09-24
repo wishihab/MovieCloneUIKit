@@ -19,7 +19,7 @@ enum APIError: Error{
 class APICaller {
     static let shared = APICaller()
     
-    func getMovieCredits(compeletion: @escaping (Result<[Cast], Error>) -> Void) {
+    func getMovieCredits(compeletion: @escaping (Result<[Title], Error>) -> Void) {
         
         guard let url = URL(string: "\(Constants.BASE_URL)/3/person/6161/movie_credits?api_key=\(Constants.API_KEY)") else {return}
         
@@ -29,7 +29,7 @@ class APICaller {
             }
             
             do{
-                let results = try JSONDecoder().decode(MovieCreditsResponse.self, from: data)
+                let results = try JSONDecoder().decode(CastTitleResponse.self, from: data)
                 compeletion(.success(results.cast))
             }catch{
                 compeletion(.failure(APIError.failedToFetchData))
@@ -38,7 +38,7 @@ class APICaller {
         task.resume()
     }
     
-    func getTvCredits(compeletion: @escaping (Result<[TvCast], Error>) -> Void) {
+    func getTvCredits(compeletion: @escaping (Result<[Title], Error>) -> Void) {
         
         guard let url = URL(string: "\(Constants.BASE_URL)/3/person/6161/tv_credits?api_key=\(Constants.API_KEY)") else {return}
         
@@ -48,27 +48,8 @@ class APICaller {
             }
             
             do{
-                let results = try JSONDecoder().decode(TvCreditsResponse.self, from: data)
+                let results = try JSONDecoder().decode(CastTitleResponse.self, from: data)
                 compeletion(.success(results.cast))
-            }catch{
-                compeletion(.failure(APIError.failedToFetchData))
-            }
-        }
-        task.resume()
-    }
-    
-    func getProfileImages(compeletion: @escaping (Result<[Profile], Error>) -> Void) {
-        
-        guard let url = URL(string: "\(Constants.BASE_URL)/3/person/6161/images?api_key=\(Constants.API_KEY)") else {return}
-        
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            
-            do{
-                let results = try JSONDecoder().decode(ImagesResponse.self, from: data)
-                compeletion(.success(results.profiles))
             }catch{
                 compeletion(.failure(APIError.failedToFetchData))
             }

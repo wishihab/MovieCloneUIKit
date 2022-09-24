@@ -7,12 +7,17 @@
 
 import UIKit
 
+enum Sections: Int{
+    case Movie = 0
+    case Tv = 1
+}
+
 class BerandaViewController: UIViewController {
     
     //create array string for title
-    let sectionTitle: [String] = ["Movies", "TV", "Images"]
+    let sectionTitle: [String] = ["Movies", "TV"]
     
-    private let berandaFeedTable: UITableView = {
+    private let movieFeedTable: UITableView = {
         
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(MovieCollectionViewTableViewCell.self, forCellReuseIdentifier: MovieCollectionViewTableViewCell.identifier)
@@ -25,20 +30,20 @@ class BerandaViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         view.backgroundColor = .systemBackground
-        view.addSubview(berandaFeedTable)
+        view.addSubview(movieFeedTable)
         
-        berandaFeedTable.delegate = self
-        berandaFeedTable.dataSource = self
+        movieFeedTable.delegate = self
+        movieFeedTable.dataSource = self
         
         configureNavBar()
         
         //set header size
         //berandaFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
         let headerView = HeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
-        berandaFeedTable.tableHeaderView = headerView
+        movieFeedTable.tableHeaderView = headerView
         
         //call function in controller and api caller
-        fetchData()
+        //fetchData()
     }
     
     private func configureNavBar(){
@@ -57,7 +62,7 @@ class BerandaViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        berandaFeedTable.frame = view.bounds
+        movieFeedTable.frame = view.bounds
     }
     /*
     // MARK: - Navigation
@@ -69,7 +74,8 @@ class BerandaViewController: UIViewController {
     }
     */
     
-    private func fetchData(){
+    
+/*    private func fetchData(){
         //Call movieCredits
         APICaller.shared.getMovieCredits{ results in
             switch results {
@@ -81,25 +87,25 @@ class BerandaViewController: UIViewController {
         }
         
         //Call tvCredits
-//        APICaller.shared.getTvCredits{ results in
-//            switch results {
-//            case .success(let casts):
-//                print(casts)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
+        APICaller.shared.getTvCredits{ results in
+            switch results {
+            case .success(let casts):
+                print(casts)
+            case .failure(let error):
+                print(error)
+            }
+        }
         
         //Call ProfileImages
-//        APICaller.shared.getProfileImages{ results in
-//            switch results {
-//            case .success(let casts):
-//                print(casts)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-    }
+        APICaller.shared.getProfileImages{ results in
+            switch results {
+            case .success(let casts):
+                print(casts)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }*/
 
 }
 
@@ -113,6 +119,30 @@ extension BerandaViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        
+        switch indexPath.section{
+        case Sections.Movie.rawValue:
+            APICaller.shared.getMovieCredits{ result in
+                switch result {
+                case .success(let castMovie):
+                    cell.configure(with: castMovie)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                
+            }
+        case Sections.Tv.rawValue:
+            APICaller.shared.getTvCredits{ result in
+                switch result {
+                case .success(let castTv):
+                    cell.configureTv(with: castTv)
+                case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        default:
+            return UITableViewCell()
+        }
         return cell
     }
     
