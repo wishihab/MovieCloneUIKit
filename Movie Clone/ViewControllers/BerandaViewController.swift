@@ -27,10 +27,26 @@ class BerandaViewController: UIViewController {
         berandaFeedTable.delegate = self
         berandaFeedTable.dataSource = self
         
+        configureNavBar()
+        
         //set header size
         //berandaFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
         let headerView = HeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         berandaFeedTable.tableHeaderView = headerView
+    }
+    
+    private func configureNavBar(){
+        var image = UIImage(named: "tixIdLogoWhite")
+        image = image?.withRenderingMode(.alwaysOriginal)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
+        
+        //add more navigationitem
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: UIImage(systemName: "person.circle.fill"), style: .done, target: self, action: nil),
+            UIBarButtonItem(image: UIImage(systemName: "bell.fill"), style: .done, target: self, action: nil)
+        ]
+        //set navigation item bar tint color
+        navigationController?.navigationBar.tintColor = .label
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,5 +96,13 @@ extension BerandaViewController: UITableViewDelegate, UITableViewDataSource {
     //??
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
+    }
+    
+    //set scrolling behavior of navigationbar / item
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let defaultOffset = view.safeAreaInsets.top
+        let offset = scrollView.contentOffset.y + defaultOffset
+        
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
     }
 }

@@ -18,22 +18,10 @@ class HeaderUIView: UIView {
     */
     
     //create playbutton
-    private let playButton: UIButton = {
+    private let buyButton: UIButton = {
        
         let button = UIButton()
-        button.setTitle("Play", for: .normal)
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 1
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 5 //add cornerradius
-        return button
-    }()
-    
-    //create playbutton
-    private let downloadButton: UIButton = {
-       
-        let button = UIButton()
-        button.setTitle("Unduh", for: .normal)
+        button.setTitle("BELI TIKET", for: .normal)
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 1
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -67,19 +55,12 @@ class HeaderUIView: UIView {
         
         //playbutton set to leadinganchor left = universal, right = arabic
         let playByttonConstraints = [
-            playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-            playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
-            playButton.widthAnchor.constraint(equalToConstant: 100)
+            buyButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 150),
+            buyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            buyButton.widthAnchor.constraint(equalToConstant: 120)
         ]
-        
-        let downloadButtonConstrains = [
-            downloadButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-            downloadButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
-            downloadButton.widthAnchor.constraint(equalToConstant: 100)
-        ]
-        
+    
         NSLayoutConstraint.activate(playByttonConstraints)
-        NSLayoutConstraint.activate(downloadButtonConstrains)
     }
     
     //init view frame
@@ -88,8 +69,7 @@ class HeaderUIView: UIView {
         
         addSubview(headerImageView)
         addGradient()
-        addSubview(playButton)
-        addSubview(downloadButton)
+        addSubview(buyButton)
         applyConstraints()
     }
     
