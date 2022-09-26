@@ -72,7 +72,8 @@ extension MovieCollectionViewTableViewCell: UICollectionViewDelegate, UICollecti
             return UICollectionViewCell()
         }
         guard let model = castTitle[indexPath.row].poster_path else{
-            return UICollectionViewCell()
+            //return UICollectionViewCell()
+            return cell
         }
         
         //cell.configure(with: castTitle[indexPath.row].poster_path)
