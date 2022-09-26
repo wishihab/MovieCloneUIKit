@@ -55,8 +55,8 @@ class HeaderUIView: UIView {
         
         //playbutton set to leadinganchor left = universal, right = arabic
         let playByttonConstraints = [
-            buyButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 150),
-            buyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            buyButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 140),
+            buyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
             buyButton.widthAnchor.constraint(equalToConstant: 120)
         ]
     

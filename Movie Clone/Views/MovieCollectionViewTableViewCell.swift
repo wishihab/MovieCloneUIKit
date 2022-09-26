@@ -17,7 +17,7 @@ class MovieCollectionViewTableViewCell: UITableViewCell {
         
         let layout = UICollectionViewFlowLayout()
         //set size of box
-        layout.itemSize = CGSize(width: 150, height: 350)
+        layout.itemSize = CGSize(width: 140, height: 200)
         layout.scrollDirection = .horizontal
         let movieCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         movieCollectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
@@ -66,6 +66,7 @@ extension MovieCollectionViewTableViewCell: UICollectionViewDelegate, UICollecti
 /*        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .systemGreen
         return cell*/
+    
         
         guard let cell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as? MovieCollectionViewCell else{
             return UICollectionViewCell()
@@ -76,11 +77,12 @@ extension MovieCollectionViewTableViewCell: UICollectionViewDelegate, UICollecti
         
         //cell.configure(with: castTitle[indexPath.row].poster_path)
         cell.configure(with: model)
-        
+        print("test \(indexPath)")
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("total \(castTitle.count)")
         return castTitle.count
     }
 }

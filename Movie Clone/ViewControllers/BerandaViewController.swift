@@ -39,7 +39,7 @@ class BerandaViewController: UIViewController {
         
         //set header size
         //berandaFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
-        let headerView = HeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        let headerView = HeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         movieFeedTable.tableHeaderView = headerView
         
         //call function in controller and api caller
@@ -187,7 +187,7 @@ extension BerandaViewController: UITableViewDelegate, UITableViewDataSource {
         let defaultOffset = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultOffset
         
-        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, offset))
     }
     
     
