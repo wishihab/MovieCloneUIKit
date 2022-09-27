@@ -12,7 +12,7 @@ class MainViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         
         let berandaView = UINavigationController(rootViewController: BerandaViewController())
         let bioskopView = UINavigationController(rootViewController: BioskopViewController())

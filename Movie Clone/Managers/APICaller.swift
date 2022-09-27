@@ -56,4 +56,23 @@ class APICaller {
         }
         task.resume()
     }
+    
+    func getRegions(compeletion: @escaping (Result<[Region], Error>) -> Void) {
+        
+        guard let url = URL(string: "\(Constants.BASE_URL)/3/watch/providers/regions?api_key=\(Constants.API_KEY)") else {return}
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            do{
+                let results = try JSONDecoder().decode(RegionResponse.self, from: data)
+                compeletion(.success(results.results))
+            }catch{
+                compeletion(.failure(APIError.failedToFetchData))
+            }
+        }
+        task.resume()
+    }
 }

@@ -1,19 +1,19 @@
 //
-//  BioskopViewController.swift
+//  SearchResultViewController.swift
 //  Movie Clone
 //
-//  Created by Alwi Shihab on 23/09/22.
+//  Created by Alwi Shihab on 27/09/22.
 //
 
 import UIKit
 
-class BioskopViewController: UIViewController {
+class SearchResultViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .black
     }
     
 

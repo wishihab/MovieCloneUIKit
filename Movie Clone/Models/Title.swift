@@ -17,6 +17,7 @@ struct Title: Codable{
     let original_title: String?
     let overview: String?
     let poster_path: String?
+    let backdrop_path: String?
 }
 
 struct Crew: Codable{
