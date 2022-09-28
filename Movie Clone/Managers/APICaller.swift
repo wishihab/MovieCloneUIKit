@@ -57,9 +57,9 @@ class APICaller {
         task.resume()
     }
     
-    func getRegions(compeletion: @escaping (Result<[Region], Error>) -> Void) {
+    func getPopularMovies(compeletion: @escaping (Result<[Movie], Error>) -> Void) {
         
-        guard let url = URL(string: "\(Constants.BASE_URL)/3/watch/providers/regions?api_key=\(Constants.API_KEY)") else {return}
+        guard let url = URL(string: "\(Constants.BASE_URL)/3/movie/popular?api_key=\(Constants.API_KEY)&page=1") else {return}
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data, error == nil else {
@@ -67,7 +67,29 @@ class APICaller {
             }
             
             do{
-                let results = try JSONDecoder().decode(RegionResponse.self, from: data)
+                let results = try JSONDecoder().decode(MovieResponse.self, from: data)
+                compeletion(.success(results.results))
+            }catch{
+                compeletion(.failure(APIError.failedToFetchData))
+            }
+        }
+        task.resume()
+    }
+    
+    func searchPopular(with query: String, compeletion: @escaping (Result<[Movie], Error>) -> Void) {
+        
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+        
+        guard let url = URL(string:"\(Constants.BASE_URL)/3/search/movie?api_key=\(Constants.API_KEY)&query=\(query)&page=1&include_adult=true") else {
+            return
+        }
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+
+            do{
+                let results = try JSONDecoder().decode(MovieResponse.self, from: data)
                 compeletion(.success(results.results))
             }catch{
                 compeletion(.failure(APIError.failedToFetchData))

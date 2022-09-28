@@ -27,7 +27,7 @@
 		08CB475A28DF27C8007C25BE /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB475928DF27C8007C25BE /* MovieCollectionViewCell.swift */; };
 		08CB476128DF28D1007C25BE /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 08CB476028DF28D1007C25BE /* SDWebImage */; };
 		08CB476328DF28D1007C25BE /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 08CB476228DF28D1007C25BE /* SDWebImageMapKit */; };
-		08F36EE528E2A9B7008E751C /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F36EE428E2A9B7008E751C /* Region.swift */; };
+		08F36EE528E2A9B7008E751C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F36EE428E2A9B7008E751C /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +70,7 @@
 		089F720728E2AF1200F752A6 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		08A8488628DDE4AD000765DA /* MovieCollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewTableViewCell.swift; sourceTree = "<group>"; };
 		08CB475928DF27C8007C25BE /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
-		08F36EE428E2A9B7008E751C /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
+		08F36EE428E2A9B7008E751C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				086F56A528DEF62D0079AB3D /* Title.swift */,
-				08F36EE428E2A9B7008E751C /* Region.swift */,
+				08F36EE428E2A9B7008E751C /* Movie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -359,7 +359,7 @@
 				084FCE9228DD548000B1ED37 /* BioskopViewController.swift in Sources */,
 				0833E25E28DD4D5E00E8DFDC /* AppDelegate.swift in Sources */,
 				086F56A628DEF62D0079AB3D /* Title.swift in Sources */,
-				08F36EE528E2A9B7008E751C /* Region.swift in Sources */,
+				08F36EE528E2A9B7008E751C /* Movie.swift in Sources */,
 				086F56A428DEF21A0079AB3D /* APICaller.swift in Sources */,
 				08A8488728DDE4AD000765DA /* MovieCollectionViewTableViewCell.swift in Sources */,
 				089F720828E2AF1200F752A6 /* SearchResultViewController.swift in Sources */,
@@ -466,7 +466,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -521,7 +521,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

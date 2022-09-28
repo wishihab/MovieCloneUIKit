@@ -9,7 +9,7 @@ import UIKit
 
 class BioskopViewController: UIViewController {
 
-    private var regions: [Region] = [Region]()
+    public var movies: [Movie] = [Movie]()
     
     private let searchTable: UITableView = {
         
@@ -22,7 +22,7 @@ class BioskopViewController: UIViewController {
        let controller = UISearchController(searchResultsController: SearchResultViewController())
         controller.searchBar.becomeFirstResponder()
         controller.searchBar.sizeToFit()
-        controller.searchBar.placeholder = "Search for places to watch"
+        controller.searchBar.placeholder = "Search for a movie"
         controller.searchBar.searchBarStyle = .prominent
         
         return controller
@@ -33,7 +33,7 @@ class BioskopViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         view.backgroundColor = .systemBackground
-        title = "Bioskop"
+        title = "Film"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
@@ -44,6 +44,7 @@ class BioskopViewController: UIViewController {
         
         fetchSearchData()
         navigationItem.searchController = searchController
+        searchController.searchResultsUpdater = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,10 +59,10 @@ class BioskopViewController: UIViewController {
     }
     
     private func fetchSearchData(){
-        APICaller.shared.getRegions{ [weak self] result in
+        APICaller.shared.getPopularMovies{ [weak self] result in
             switch result{
-            case.success(let regions):
-                self?.regions = regions
+            case.success(let movies):
+                self?.movies = movies
                 DispatchQueue.main.async {
                     self?.searchTable.reloadData()
                 }
@@ -84,17 +85,43 @@ class BioskopViewController: UIViewController {
 
 extension BioskopViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return regions.count
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         //cell.textLabel?.text = "Bioskop XXI"
-        cell.textLabel?.text = regions[indexPath.row].english_name ?? regions[indexPath.row].native_name ?? "Bioskop XXI"
+        cell.textLabel?.text = movies[indexPath.row].original_title ?? movies[indexPath.row].title ?? "Bioskop XXI"
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+}
+
+
+extension BioskopViewController: UISearchResultsUpdating{
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        guard let query = searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty,
+              query.trimmingCharacters(in: .whitespaces).count >= 3,
+              let resultsController = searchController.searchResultsController as? SearchResultViewController else{
+            return
+        }
+        
+        APICaller.shared.searchPopular(with: query){result in
+            DispatchQueue.main.async {
+                switch result{
+                case .success(let movies):
+                    resultsController.searchMovie = movies
+                    resultsController.searchTable.reloadData()
+                case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }

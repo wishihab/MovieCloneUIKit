@@ -19,11 +19,11 @@ class MainViewController: UITabBarController {
         let tiketView = UINavigationController(rootViewController: TiketViewController())
         
         berandaView.tabBarItem.image = UIImage(systemName: "house.fill")
-        bioskopView.tabBarItem.image = UIImage(systemName: "building.2.fill")
+        bioskopView.tabBarItem.image = UIImage(systemName: "popcorn.fill")
         tiketView.tabBarItem.image = UIImage(systemName: "ticket.fill")
         
         berandaView.title = "Beranda"
-        bioskopView.title = "Bioskop"
+        bioskopView.title = "Film"
         tiketView.title = "Tiket"
         
         tabBar.tintColor = .label
